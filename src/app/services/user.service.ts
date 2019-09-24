@@ -11,9 +11,10 @@ export class UserService {
   constructor(private apiService: ApiService) { }
 
   login(userCredentials: UserCredentials): Observable<User> {
-    return this.apiService.post('/users/login', {user: userCredentials})
-    .pipe(map(data => {
-      return data;
-    }));
+    return this.apiService.post('/users/login', { user: userCredentials })
+      .pipe(map(data => {
+        return data;
+      }));
   }
+
 }

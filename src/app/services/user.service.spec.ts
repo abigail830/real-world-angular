@@ -8,7 +8,7 @@ import { ApiService } from '../util/api.service';
 
 describe('UserService', () => {
 
-  it ('should able to login', async () => {
+  it('should able to login', async () => {
     // given
     const userCredentials: UserCredentials = {
       email: 'email',
@@ -26,9 +26,9 @@ describe('UserService', () => {
     spy.mockReturnValue(of(expectUser));
 
     // when
-    await service.login(userCredentials).subscribe (user => {
-        expect(user).toEqual(expectUser);
-      },
+    await service.login(userCredentials).subscribe(user => {
+      expect(user).toEqual(expectUser);
+    },
       fail
     );
   });

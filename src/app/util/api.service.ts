@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
@@ -8,6 +8,12 @@ import { catchError } from 'rxjs/operators';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
 
   private handleError(error: any) {
     return throwError(error.error);
@@ -30,7 +36,8 @@ export class ApiService {
   post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
       `${environment.base_url}${path}`,
-      JSON.stringify(body)
+      JSON.stringify(body),
+      this.httpOptions
     ).pipe(catchError(this.handleError));
   }
 
